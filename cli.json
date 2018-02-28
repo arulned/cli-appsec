@@ -1,0 +1,13 @@
+{
+  "requirements": {
+    "node": "7.0.0"
+  },
+  "commands": [
+    {
+      "name": "appsec",
+      "version": "0.1.0",
+      "description": "Akamai Security tools for protecting websites.",
+      "bin": "https://github.com/akamai/cli-appsec/releases/download/{{.Version}}/akamai-{{.Name}}-{{.Version}}-{{.OS}}-{{.Arch}}{{.BinSuffix}}"
+      }
+    ]
+}
