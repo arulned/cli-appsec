@@ -14,11 +14,11 @@ In order to use this configuration, you need to:
 * When working through this process you need to give grants for the Application Security API.  The section in your configuration file should be called 'default' unless you would like to pass the section name in every command using the `--section` option.
 
 ## Overview
-The Akamai Appsec Kit is a set of nodejs libraries that wraps Akamai's {OPEN} APIs to help simplify protection to the properties delivered by Akamai. This kit can be used [as a no-fuss command line utility](#akamai-appsec) to interact with the library.
+The akamai-appsec Kit is a set of nodejs libraries that wraps Akamai's {OPEN} APIs to help simplify protection to the properties delivered by Akamai. This kit can be used [as a no-fuss command line utility](#akamai-appsec) to interact with the library.
 
 ```
-$ akamai appsec
-Usage: akamai appsec <command> [options]
+$ akamai-appsec
+Usage: akamai-appsec <command> [options]
 
 Commands:
   configs                   List all available configurations.
@@ -63,15 +63,15 @@ Akamai customers can currently configure delivery of a new web property using th
 |-|---------|
 |1|[akamai property create](#https://github.com/akamai/cli-property#create)|
 |2|[akamai property activate](#https://github.com/akamai/cli-property#activate)|
-|3|akamai appsec configs|
-|4|akamai appsec versions --config=`<config id>`|
-|5|akamai appsec clone --config=<config id> --version=<version number>|
-|6|akamai appsec selectable-hostnames  |
-|7|akamai appsec add-hostname <comma separated hostnames>|
-|8a|akamai appsec policies --config=<config id> --version=<version number>|
-|8b|akamai appsec create-match-target --hostnames=<comma separated hostnames> --paths=<comma separated paths> --policy=<security policy id>|
-|8c|akamai appsec match-target-order --insert=<match target id> --config=<config id> --version=<version number>  |
-|8d|akamai appsec modify-match-target <match target id> add-hostname <hostname>|
+|3|akamai-appsec configs|
+|4|akamai-appsec versions --config=`<config id>`|
+|5|akamai-appsec clone --config=`<config id>` --version=`<version number>`|
+|6|akamai-appsec selectable-hostnames  |
+|7|akamai-appsec add-hostname `<comma separated hostnames>`|
+|8a|akamai-appsec policies --config=`<config id>` --version=`<version number>`|
+|8b|akamai-appsec create-match-target --hostnames=`<comma separated hostnames>` --paths=`<comma separated paths>` --policy=`<security policy id>`|
+|8c|akamai-appsec match-target-order --insert=`<match target id>` --config=`<config id>` --version=`<version number>`  |
+|8d|akamai-appsec modify-match-target `<match target id>` add-hostname `<hostname>`|
 |9|Activate the configuration version
 
 ## Custom Rule
@@ -79,11 +79,11 @@ Adding or updating a custom rule to the protection of a hostname requires a chan
 
 |#|Commands|
 |-|---------|
-|1|akamai appsec clone --config=<config id> --version=<version number>|
-|2|akamai appsec structured-rule-template > structuredRule.json|
+|1|akamai-appsec clone --config=`<config id>` --version=``<version number>``|
+|2|akamai-appsec structured-rule-template > structuredRule.json|
 |3|vim structuredRule.json|
-|4|akamai appsec create-custom-rule @structuredRule.json|
-|5|akamai appsec enable-custom-rule --custom-rule=<custom rule id> --policy=<security policy id> --action=<alert or deny>|
+|4|akamai-appsec create-custom-rule @structuredRule.json|
+|5|akamai-appsec enable-custom-rule --custom-rule=`<custom rule id>` --policy=`<security policy id>` --action=`<alert or deny>`|
 |6|Activate the configuration version|
 
 For details about individual commands, please look at [Commands](#commands)
@@ -99,6 +99,7 @@ For details about individual commands, please look at [Commands](#commands)
 * [Retrieve Website Match targets](#list-website-match-targets)
 * [Modify a Website Match target](#modify-website-match-target)
 * [Change Website Match target order](#change-website-match-target-order)
+* [Custom rule template](#custom-rule-teplate)
 * [Create custom rule](#create-custom-rule)
 * [Modify a custom rule](#modify-custom-rule)
 * [Enable a custom rule](#enable-custom-rule)
@@ -108,7 +109,7 @@ For details about individual commands, please look at [Commands](#commands)
 
 ### List Configurations
 ```
-Usage: akamai appsec configs [options]
+Usage: akamai-appsec configs [options]
 
 Command options:
   --json     Print the raw json response. All commands respect this option.                          [boolean]
@@ -121,7 +122,7 @@ Command options:
 
 ### List Configuration versions
 ```
-Usage: akamai appsec versions [options]
+Usage: akamai-appsec versions [options]
 
 Options:
   --config <id>  Configuration id. Mandatory if you have more than one configuration.                       [number]
@@ -139,7 +140,7 @@ Command options:
 
 ### Retrieve Configuration version
 ```
-Usage: akamai appsec version [options]
+Usage: akamai-appsec version [options]
 
 Options:
   --config <id>    Configuration id number. If not provided, assumes there is only one configuration and
@@ -163,7 +164,7 @@ Command options:
 These are the hostnames that the user can choose from, to add to the configuration version for protection.
 
 ```
-Usage: akamai appsec selectable-hostnames [options]
+Usage: akamai-appsec selectable-hostnames [options]
 
 Options:
   --config <id>   Configuration id. Mandatory if you have more than one configuration.
@@ -186,7 +187,7 @@ Command options:
 These are the hostnames that the user is already protecting as part of this configuration version.
 ```
 
-Usage: akamai appsec selected-hostnames [options]
+Usage: akamai-appsec selected-hostnames [options]
 
 Options:
   --config <id>   Configuration id. Mandatory if you have more than one configuration.
@@ -209,7 +210,7 @@ Command options:
 Adds a new hostname to the protected list(selected hostnames). The hostnames chosen here should be from the selectable hostnames list.
 
 ```
-Usage: akamai appsec add-hostname <hostnames> [options]
+Usage: akamai-appsec add-hostname <hostnames> [options]
 
 Arguments:
   <hostnames>      The comma separated list of hostnames to add.
@@ -235,7 +236,7 @@ Command options:
 Retrieves the list of security policies present in this configuration version.
 
 ```
-Usage: akamai appsec policies [options]
+Usage: akamai-appsec policies [options]
 
 Options:
   --config <id>   Configuration id. Mandatory if you have more than one configuration.
@@ -256,7 +257,7 @@ Command options:
 ### Create website match target
 
 ```
-Usage: akamai appsec create-match-target [options]
+Usage: akamai-appsec create-match-target [options]
 
 Options:
   --config <id>                        Configuration id. Mandatory if you have more than one configuration.
@@ -286,7 +287,7 @@ Command options:
 ### List website match targets
 
 ```
-Usage: akamai appsec match-targets [options]
+Usage: akamai-appsec match-targets [options]
 
 Options:
   --config <id>    Configuration id. Mandatory if you have more than one configuration.
@@ -307,7 +308,7 @@ Command options:
 Updates an existing match target. As of now, the only supported operation is to add a hostname to the existing match target.
 
 ```
-Usage: akamai appsec modify-match-target <match-target> <subcommand> <hostname> [options]
+Usage: akamai-appsec modify-match-target <match-target> <subcommand> <hostname> [options]
 
 Arguments:
   <match-target>  The match target id.                                                     [required] [string]
@@ -335,7 +336,7 @@ Command options:
 Updates the order of the website match targets
 
 ```
-Usage: akamai appsec match-target-order [options]
+Usage: akamai-appsec match-target-order [options]
 
 Options:
   --config <id>    Configuration id number
@@ -361,9 +362,16 @@ Command options:
   --help     Prints help information.                                               [commands: help] [boolean]
   --version  Current version of the program.                                                         [boolean]
 ```
+### Custom rule template
+
+The custom rule needs to be fed as as json and this command prints the json template for creating a custom rule. You must add the required details in the json and remove the rest before creating a custom rule.
+
+```
+Usage: akamai-appsec structured-rule-template
+```
 ### Create custom rule
 ```
-Usage: akamai appsec create-custom-rule [options]
+Usage: akamai-appsec create-custom-rule [options]
 
 Options:
   --config <id>  Configuration id. Mandatory if you have more than one configuration.                 [number]
@@ -379,7 +387,7 @@ Command options:
 ```
 ### Modify custom rule
 ```
-Usage: akamai appsec modify-custom-rule [options]
+Usage: akamai-appsec modify-custom-rule [options]
 
 Options:
   --config <id>       Configuration id. Mandatory if you have more than one configuration.            [number]
@@ -395,7 +403,7 @@ Command options:
 ```
 ### Enable custom rule
 ```
-Usage: akamai appsec enable-custom-rule [options]
+Usage: akamai-appsec enable-custom-rule [options]
 
 Options:
   --custom-rule <id>  Rule ID.
@@ -404,8 +412,8 @@ Options:
   --policy <id>       Policy ID.
                       [required] [string]
 
-  --action <id>       Action to assign.
-                      [required] [string]
+  --action <action>   Action to assign. If the action is "none", it is not associated with the policy
+                      [required] [enum] [alert, deny, none]
 
   --config <id>       Configuration id. Mandatory if you have more than one configuration.
                       [number]
@@ -423,7 +431,7 @@ Command options:
   ```
 ### List custom rules
 ```
-Usage: akamai appsec custom-rules [options]
+Usage: akamai-appsec custom-rules [options]
 
 Options:
   --config <id>  Configuration id. Mandatory if you have more than one configuration.                 [number]
@@ -438,7 +446,7 @@ Command options:
 
 ### Retrieve custom rule
 ```
-Usage: akamai appsec custom-rule [options]
+Usage: akamai-appsec custom-rule [options]
 
 Options:
   --config <id>       Configuration id. Mandatory if you have more than one configuration.            [number]
@@ -454,7 +462,7 @@ Command options:
 
 ### Delete custom rule
 ```
-Usage: akamai appsec delete-custom-rule [options]
+Usage: akamai-appsec delete-custom-rule [options]
 
 Options:
   --config <id>       Configuration id. Mandatory if you have more than one configuration.            [number]
