@@ -61,8 +61,8 @@ Akamai customers can currently configure delivery of a new web property using th
 
 |#|Commands|
 |-|---------|
-|1|[akamai property create](#https://github.com/akamai/cli-property#create)|
-|2|[akamai property activate](#https://github.com/akamai/cli-property#activate)|
+|1|[akamai property create](https://github.com/akamai/cli-property#create)|
+|2|[akamai property activate](https://github.com/akamai/cli-property#activate)|
 |3|akamai-appsec configs|
 |4|akamai-appsec versions --config=`<config id>`|
 |5|akamai-appsec clone --config=`<config id>` --version=`<version number>`|
