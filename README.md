@@ -58,6 +58,7 @@ This script wraps all of the functionality from the library into a command line 
 
 ## Protect Hosts
 Akamai customers can currently configure delivery of a new web property using the PAPI API/CLI. This use case enables protecting these new web properties. This protection is limited to adding the host to an existing security policy. The typical steps are listed in the following table:
+
 |#|Commands|
 |-|---------|
 |1|[akamai property create](#https://github.com/akamai/cli-property#create)|
