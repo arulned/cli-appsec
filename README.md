@@ -80,7 +80,7 @@ Adding or updating a custom rule to the protection of a hostname requires a chan
 
 |#|Commands|Comments|
 |-|---------|--------|
-|1|Clone configuration version _(comming soon)_|Optional. You can skip this step if you choose to use an existing editable<sup>[1](#References)</sup> configuration version|
+|1|Clone configuration version _(comming soon)_|Optional. You can skip this step if you choose to use an existing editable<sup>[1](#references)</sup> configuration version|
 |2|`akamai-appsec structured-rule-template > structuredRule.json`|This prints a template json to the standard output. You must edit this template appropriately before creating the custom rule|
 |3|`vim structuredRule.json`||
 |4|`akamai-appsec create-custom-rule @structuredRule.json`||
